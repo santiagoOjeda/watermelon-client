@@ -1,0 +1,35 @@
+.wrapper {
+    font-family: 'Roboto';
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: flex-end;
+    align-items: center;
+    
+    &__text {
+        padding: 17% 2% 2% 2%;
+        background-color: #ffd723;
+        -webkit-mask-image: -webkit-gradient(linear, left bottom,left top, from(rgba(0,0,0,1)), color-stop(0.45, rgba(0, 0, 0, 1)),to(rgba(0,0,0,0)));
+    }
+
+    img {
+        position: absolute;
+        height: 60vh;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 70px;
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: -1px;
+        text-shadow: 0 0 black; 
+        text-shadow: 2px 2px 9px rgba(150, 150, 150, 1); 
+    }
+
+    p {
+        font-size: 21px;
+    }
+}
