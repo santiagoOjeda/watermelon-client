@@ -12,8 +12,8 @@ const Blog = () => {
     await axios
       .get(URL)
       .then((response) => {
-        setPostList(response.data.post);
-        console.log(response.data.post);
+        setPostList(response.data);
+        console.log(response.data);
       })
       .catch((e) => {
         console.error(e);

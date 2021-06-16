@@ -1,0 +1,16 @@
+/* @import url("../../components/post/styles.scss"); */
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form
+{
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    width: 400px;
+    justify-content: space-evenly;
+}
