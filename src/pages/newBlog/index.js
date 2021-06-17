@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import "./styles.scss";
-import Axios from "axios";
+import axios from "axios";
 
 const NewBlog = () => {
   const [newPostData, setNewPostData] = useState({});
@@ -10,48 +10,21 @@ const NewBlog = () => {
   const URLmock = "http://localhost:5000/post/save";
 
   const handleClick = async (value) => {
-    /*    Axios({
+    axios({
       method: "post",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
       url: URL,
       data: {
-        title: "app",
-        paragraph: "appapp apapapapap",
+        firstName: "Finn",
+        lastName: "Williams",
       },
-    }) */
-    Axios.post(
-      URL,
-      {
-        title: "app",
-        paragraph: "appapp apapapapap",
+    }).then(
+      (response) => {
+        console.log(response);
       },
-      {
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        crossdomain: true,
+      (error) => {
+        console.log(error);
       }
-    )
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-
-    /*   await axios
-      .post(
-        URL,
-        {
-          title: "app",
-          paragraph: "appapp apapapapap",
-        },
-        { headers, crossdomain: true }
-      )
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((e) => {
-        console.error(e);
-      }); */
+    );
   };
 
   return (
