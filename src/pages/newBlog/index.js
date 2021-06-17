@@ -13,6 +13,10 @@ const NewBlog = () => {
     axios({
       method: "post",
       url: URL,
+      headers: {
+        "Content-Type": "application/json",
+        "Referrer-Policy": "no-referrer",
+      },
       data: {
         firstName: "Finn",
         lastName: "Williams",
