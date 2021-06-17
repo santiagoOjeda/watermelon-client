@@ -5,21 +5,20 @@ import "./styles.scss";
 import axios from "axios";
 
 const NewBlog = () => {
-  const [newPostData, setNewPostData] = useState({});
-  const URL = "https://watermelon-server.herokuapp.com/post/save";
-  const URLmock = "http://localhost:5000/post/save";
+  const handleClick = (value) => {
+    axios.defaults.baseURL = "https://watermelon-server.herokuapp.com";
+    axios.defaults.headers.post["Content-Type"] =
+      "application/json;charset=utf-8";
+    axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+    axios.defaults.headers.post["Content-Type"] =
+      "application/json;charset=utf-8";
 
-  const handleClick = async (value) => {
     axios({
       method: "post",
-      url: URL,
-      headers: {
-        "Content-Type": "application/json",
-        "Referrer-Policy": "no-referrer",
-      },
+      url: "/post/save",
       data: {
-        firstName: "Finn",
-        lastName: "Williams",
+        title: "Finn",
+        paragraph: "Williams",
       },
     }).then(
       (response) => {
