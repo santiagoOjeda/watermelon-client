@@ -13,7 +13,7 @@ const App = () => {
         <Nav/>
         <Switch>
           <Route path="/">
-            <NewBlog />
+            <Blog />
           </Route>
           <Route path="/new" exact>
             <NewBlog />
