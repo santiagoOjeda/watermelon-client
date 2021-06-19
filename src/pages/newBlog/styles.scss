@@ -4,7 +4,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: row;
+    width: 100%;
 }
+
+.wrapper-row{
+    background-color: red;
+}
+
+.wrapper-post {
+    background: green;
+    width: 45%;
+    min-height: 200px;
+}
+
+.wrapper-column { background-color: blue;}
 
 form
 {
@@ -14,3 +28,4 @@ form
     width: 400px;
     justify-content: space-evenly;
 }
+

@@ -28,14 +28,23 @@ const Blog = () => {
     postList.forEach((element) => console.log(element));
   }, [postList]);
 
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + "/" + dd + "/" + yyyy;
+
   return (
     <>
       {postList.map((post) => (
         <Post
-          bgColor="red"
           title={post.title}
           imgUrl=""
-          text={post.paragraph}
+          paragraph={post.paragraph}
+          author="santi ojeda"
+          date={today}
+          bgColor="green"
         />
       ))}
     </>

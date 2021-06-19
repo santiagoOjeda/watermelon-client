@@ -13,9 +13,9 @@ const App = () => {
         <Nav/>
         <Switch>
           <Route path="/">
-            <Blog />
+          <NewBlog />
           </Route>
-          <Route path="/new" exact>
+          <Route path="/new" >
             <NewBlog />
           </Route>
         </Switch>
