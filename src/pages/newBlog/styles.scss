@@ -1,31 +1,59 @@
 /* @import url("../../components/post/styles.scss"); */
+.new-post {
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        width: 100%;
 
-.wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    width: 100%;
-}
+        &__top {
+            width: 600px;
+            min-height: 100px;
+            padding: 3%;
+        }
 
-.wrapper-row{
+        &__bottom {
+            width: calc(90% - 600px);
+            min-height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form.new-post__form {
+            display: flex;
+            flex-direction: column;
+            padding: 3%;
+        }
+
+        button {
+            margin-top: 40px;
+        }
+    }
+
+/*     .wrapper-row{
     background-color: red;
-}
+    }
 
-.wrapper-post {
+    .wrapper-post {
     background: green;
     width: 45%;
     min-height: 200px;
-}
+    }
 
-.wrapper-column { background-color: blue;}
+    .wrapper-column { background-color: blue;}
 
-form
-{
-    display: flex;
-    flex-direction: column;
-    height: 400px;
-    width: 400px;
-    justify-content: space-evenly;
-}
+    form
+    {
+        display: flex;
+        flex-direction: row;
+        height: 400px;
+        width: 400px;
+        justify-content: space-evenly;
+    } */
+
+
+
+} 
 

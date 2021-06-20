@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/webpack -p --mode production",
+    "build": "./node_modules/.bin/webpack -p --mode production --history-api-fallback",
     "start": "./node_modules/.bin/webpack-dev-server --config ./webpack.config.js --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  },  
   "repository": {
     "type": "git",
     "url": "git+https://github.com/santiagoOjeda/watermelon-client.git"
