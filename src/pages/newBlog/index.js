@@ -14,6 +14,10 @@ import Fab from '@material-ui/core/Fab';
 import CheckIcon from '@material-ui/icons/Check';
 import SaveIcon from '@material-ui/icons/Save';
 
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -113,83 +117,98 @@ const NewBlog = () => {
     <>
       <div className='new-post__wrapper'>
         <div className='new-post__wrapper__top'>
-          <form noValidate className='new-post__form' autoComplete='off'>
-            <TextField
-              id='standard-basic'
-              label='Titulo'
-              onChange={(value) => {
-                setNewPostData({
-                  ...newPostData,
-                  title: value.target.value,
-                });
-              }}
-            />
+          <Card>
+            <CardContent>
+              <form noValidate className='new-post__form' autoComplete='off'>
+                <TextField
+                  id='standard-basic'
+                  label='Titulo'
+                  onChange={(value) => {
+                    setNewPostData({
+                      ...newPostData,
+                      title: value.target.value,
+                    });
+                  }}
+                />
 
-            <TextField
-              id='standard-multiline-flexible'
-              label='Parrafo'
-              multiline
-              rowsMax={4}
-              onChange={(value) => {
-                setNewPostData({
-                  ...newPostData,
-                  paragraph: value.target.value,
-                });
-              }}
-            />
+                <TextField
+                  id='standard-multiline-flexible'
+                  label='Parrafo'
+                  multiline
+                  rowsMax={4}
+                  onChange={(value) => {
+                    setNewPostData({
+                      ...newPostData,
+                      paragraph: value.target.value,
+                    });
+                  }}
+                />
 
-            <TextField
-              id='standard-basic'
-              label='Autor'
-              onChange={(value) => {
-                setNewPostData({
-                  ...newPostData,
-                  author: value.target.value,
-                });
-              }}
-            />
+                <TextField
+                  id='standard-basic'
+                  label='Autor'
+                  onChange={(value) => {
+                    setNewPostData({
+                      ...newPostData,
+                      author: value.target.value,
+                    });
+                  }}
+                />
 
-            <br></br>
-            <br></br>
+                <br></br>
+                <br></br>
 
-            <CirclePicker
-              onChange={handleColorChange}
-              color={newPostData.bgColor}
-            />
+                <input type='file' />
 
-            <div className={classes.root}>
-              <div className={classes.wrapper}>
-                <Fab
-                  aria-label='save'
-                  color='primary'
-                  className={buttonClassname}
-                  onClick={handleClick}
-                >
-                  {success ? <CheckIcon /> : <SaveIcon />}
-                </Fab>
-                {isFetching && (
-                  <CircularProgress size={68} className={classes.fabProgress} />
-                )}
-              </div>
-              <div className={classes.wrapper}>
-                <Button
-                  variant='contained'
-                  color='primary'
-                  className={buttonClassname}
-                  disabled={isFetching}
-                  onClick={handleClick}
-                >
-                  Guardar
-                </Button>
-                {isFetching && (
-                  <CircularProgress
-                    size={24}
-                    className={classes.buttonProgress}
-                  />
-                )}
-              </div>
-            </div>
-          </form>
+                <br></br>
+                <br></br>
+
+                <CirclePicker
+                  onChange={handleColorChange}
+                  color={newPostData.bgColor}
+                />
+
+                <div className={classes.root}>
+                  <div className={classes.wrapper}>
+                    <Fab
+                      aria-label='save'
+                      color='primary'
+                      className={buttonClassname}
+                      onClick={handleClick}
+                    >
+                      {success ? <CheckIcon /> : <SaveIcon />}
+                    </Fab>
+                    {isFetching && (
+                      <CircularProgress
+                        size={68}
+                        className={classes.fabProgress}
+                      />
+                    )}
+                  </div>
+                  <div className={classes.wrapper}>
+                    <Button
+                      variant='contained'
+                      color='primary'
+                      className={buttonClassname}
+                      disabled={isFetching}
+                      onClick={handleClick}
+                    >
+                      Guardar
+                    </Button>
+                    {isFetching && (
+                      <CircularProgress
+                        size={24}
+                        className={classes.buttonProgress}
+                      />
+                    )}
+                  </div>
+                </div>
+              </form>
+            </CardContent>
+            <CardActions>
+              <Button size='small'>Learn More</Button>
+            </CardActions>
+          </Card>
         </div>
         <div className='new-post__wrapper__bottom'>
           <Post
