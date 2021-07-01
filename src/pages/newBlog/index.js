@@ -82,10 +82,8 @@ const NewBlog = () => {
         setIsFetching(false);
         setSuccess(true);
         setNewPostData({});
-        console.log(response);
       },
       (error) => {
-        debugger;
         console.log(error);
       }
     );
@@ -93,7 +91,6 @@ const NewBlog = () => {
 
   const handleColorChange = (color, event) => {
     setNewPostData({ ...newPostData, bgColor: color.hex });
-    console.log(color.hex);
   };
 
   const handleButtonClick = () => {

@@ -2,40 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Post from '../../components/post';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import './styles.scss';
-import axios from 'axios';
+import useFetch from '../../hooks/useFetch';
 
 const Blog = () => {
-  const [postList, setPostList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
   const URL = 'https://watermelon-server.herokuapp.com/post/all';
-
-  const fetchPost = async () => {
-    setIsLoading(true);
-    await axios
-      .get(URL)
-      .then((response) => {
-        setPostList(response.data);
-        setIsLoading(false);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  };
-
-  useEffect(() => {
-    fetchPost();
-  }, []);
+  const { postList, isLoading } = useFetch(URL);
 
   useEffect(() => {
     postList.forEach((element) => console.log(element));
   }, [postList]);
-
-  let today = new Date();
-  const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  const yyyy = today.getFullYear();
-  today = mm + '/' + dd + '/' + yyyy;
 
   return (
     <>
