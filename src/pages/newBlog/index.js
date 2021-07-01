@@ -119,9 +119,15 @@ const NewBlog = () => {
         <div className='new-post__wrapper__top'>
           <Card>
             <CardContent>
-              <form noValidate className='new-post__form' autoComplete='off'>
+              <form
+                noValidate
+                className='new-post__form'
+                autoComplete='off'
+                method='POST'
+                enctype='multipart/form-data'
+              >
                 <TextField
-                  id='standard-basic'
+                  id='title'
                   label='Titulo'
                   onChange={(value) => {
                     setNewPostData({
@@ -132,7 +138,7 @@ const NewBlog = () => {
                 />
 
                 <TextField
-                  id='standard-multiline-flexible'
+                  id='paragraph'
                   label='Parrafo'
                   multiline
                   rowsMax={4}
@@ -145,7 +151,7 @@ const NewBlog = () => {
                 />
 
                 <TextField
-                  id='standard-basic'
+                  id='author'
                   label='Autor'
                   onChange={(value) => {
                     setNewPostData({
@@ -158,8 +164,10 @@ const NewBlog = () => {
                 <br></br>
                 <br></br>
 
-                <input type='file' />
-
+                <input type='file' name='image' />
+                <Button variant='contained' color='primary' type='submit'>
+                  Guardar imagen
+                </Button>
                 <br></br>
                 <br></br>
 
@@ -205,9 +213,6 @@ const NewBlog = () => {
                 </div>
               </form>
             </CardContent>
-            <CardActions>
-              <Button size='small'>Learn More</Button>
-            </CardActions>
           </Card>
         </div>
         <div className='new-post__wrapper__bottom'>
