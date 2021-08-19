@@ -7,7 +7,7 @@
     "build": "./node_modules/.bin/webpack -p --mode production --history-api-fallback",
     "start": "./node_modules/.bin/webpack-dev-server --config ./webpack.config.js --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },  
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/santiagoOjeda/watermelon-client.git"
@@ -47,6 +47,7 @@
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "axios": "^0.21.1",
+    "dayjs": "^1.10.6",
     "react": "^17.0.2",
     "react-color": "^2.19.3",
     "react-dom": "^17.0.2",

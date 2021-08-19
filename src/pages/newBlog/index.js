@@ -17,6 +17,7 @@ import SaveIcon from "@material-ui/icons/Save";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import useGetDate from "../../hooks/useGetDate";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,7 +56,6 @@ const NewBlog = () => {
   const [isFetching, setIsFetching] = useState(false);
 
   const classes = useStyles();
-  const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const timer = React.useRef();
 
@@ -63,7 +63,10 @@ const NewBlog = () => {
     [classes.buttonSuccess]: success,
   });
 
-  const handleClick = (value) => {
+  const { date } = useGetDate();
+
+  const handleClick = () => {
+    console.log("date", date);
     setIsFetching(true);
     setSuccess(false);
     axios.defaults.baseURL = "https://watermelon-server.herokuapp.com";
@@ -78,7 +81,7 @@ const NewBlog = () => {
       url: "/post/new",
       data: newPostData,
     }).then(
-      (response) => {
+      () => {
         setIsFetching(false);
         setSuccess(true);
         setNewPostData({});
@@ -89,7 +92,7 @@ const NewBlog = () => {
     );
   };
 
-  const handleColorChange = (color, event) => {
+  const handleColorChange = (color) => {
     setNewPostData({ ...newPostData, bgColor: color.hex });
   };
 
@@ -98,6 +101,11 @@ const NewBlog = () => {
       clearTimeout(timer.current);
     };
   }, []);
+
+  useEffect(() => {
+    debugger;
+    setNewPostData({ ...newPostData, date: date });
+  }, [date]);
 
   return (
     <>
@@ -197,7 +205,7 @@ const NewBlog = () => {
             imgUrl=""
             paragraph={newPostData.paragraph}
             author={newPostData.author}
-            date={""}
+            date={newPostData.date}
             bgColor={newPostData.bgColor}
           />
         </div>
