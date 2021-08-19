@@ -93,17 +93,6 @@ const NewBlog = () => {
     setNewPostData({ ...newPostData, bgColor: color.hex });
   };
 
-  const handleButtonClick = () => {
-    if (!loading) {
-      setSuccess(false);
-      setLoading(true);
-      timer.current = window.setTimeout(() => {
-        setSuccess(true);
-        setLoading(false);
-      }, 2000);
-    }
-  };
-
   useEffect(() => {
     return () => {
       clearTimeout(timer.current);
@@ -151,11 +140,6 @@ const NewBlog = () => {
                     });
                   }}
                 />
-
-                <br></br>
-                <br></br>
-
-                <input type="file" />
 
                 <br></br>
                 <br></br>
