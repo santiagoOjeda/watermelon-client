@@ -10,8 +10,10 @@ function Post({ bgColor, title, paragraph, author, date }) {
     >
       <div className="wrapper__text">
         <h1>{title}</h1>
-        <p>{author}</p>
-        <p>{date}</p>
+        <p>
+          Autor:<span> {author} </span>
+          Fecha: <span> {date || "01/01/01"}</span>
+        </p>
         <p>{paragraph}</p>
       </div>
     </article>

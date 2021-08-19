@@ -1,50 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import Button from '@material-ui/core/Button';
-import Post from '../../components/post';
-import TextField from '@material-ui/core/TextField';
-import './styles.scss';
-import axios from 'axios';
-import { CirclePicker } from 'react-color';
+import React, { useState, useEffect } from "react";
+import Button from "@material-ui/core/Button";
+import Post from "../../components/post";
+import TextField from "@material-ui/core/TextField";
+import "./styles.scss";
+import axios from "axios";
+import { CirclePicker } from "react-color";
 
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { green } from '@material-ui/core/colors';
-import Fab from '@material-ui/core/Fab';
-import CheckIcon from '@material-ui/icons/Check';
-import SaveIcon from '@material-ui/icons/Save';
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { green } from "@material-ui/core/colors";
+import Fab from "@material-ui/core/Fab";
+import CheckIcon from "@material-ui/icons/Check";
+import SaveIcon from "@material-ui/icons/Save";
 
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
   },
   wrapper: {
     margin: theme.spacing(1),
-    position: 'relative',
+    position: "relative",
   },
   buttonSuccess: {
     backgroundColor: green[500],
-    '&:hover': {
+    "&:hover": {
       backgroundColor: green[700],
     },
   },
   fabProgress: {
     color: green[500],
-    position: 'absolute',
-    top: '33px',
+    position: "absolute",
+    top: "33px",
     left: -6,
     zIndex: 1,
   },
   buttonProgress: {
     color: green[500],
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
     marginTop: 8,
     marginLeft: -12,
   },
@@ -66,16 +66,16 @@ const NewBlog = () => {
   const handleClick = (value) => {
     setIsFetching(true);
     setSuccess(false);
-    axios.defaults.baseURL = 'https://watermelon-server.herokuapp.com';
-    axios.defaults.headers.post['Content-Type'] =
-      'application/json;charset=utf-8';
-    axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-    axios.defaults.headers.post['Content-Type'] =
-      'application/json;charset=utf-8';
+    axios.defaults.baseURL = "https://watermelon-server.herokuapp.com";
+    axios.defaults.headers.post["Content-Type"] =
+      "application/json;charset=utf-8";
+    axios.defaults.headers.post["Access-Control-Allow-Origin"] = "*";
+    axios.defaults.headers.post["Content-Type"] =
+      "application/json;charset=utf-8";
 
     axios({
-      method: 'post',
-      url: '/post/save',
+      method: "post",
+      url: "/post/new",
       data: newPostData,
     }).then(
       (response) => {
@@ -115,14 +115,14 @@ const NewBlog = () => {
 
   return (
     <>
-      <div className='new-post__wrapper'>
-        <div className='new-post__wrapper__top'>
+      <div className="new-post__wrapper">
+        <div className="new-post__wrapper__top">
           <Card>
             <CardContent>
-              <form noValidate className='new-post__form' autoComplete='off'>
+              <form noValidate className="new-post__form" autoComplete="off">
                 <TextField
-                  id='standard-basic'
-                  label='Titulo'
+                  id="standard-basic"
+                  label="Titulo"
                   onChange={(value) => {
                     setNewPostData({
                       ...newPostData,
@@ -132,8 +132,8 @@ const NewBlog = () => {
                 />
 
                 <TextField
-                  id='standard-multiline-flexible'
-                  label='Parrafo'
+                  id="standard-multiline-flexible"
+                  label="Parrafo"
                   multiline
                   rowsMax={4}
                   onChange={(value) => {
@@ -145,8 +145,8 @@ const NewBlog = () => {
                 />
 
                 <TextField
-                  id='standard-basic'
-                  label='Autor'
+                  id="standard-basic"
+                  label="Autor"
                   onChange={(value) => {
                     setNewPostData({
                       ...newPostData,
@@ -158,7 +158,7 @@ const NewBlog = () => {
                 <br></br>
                 <br></br>
 
-                <input type='file' />
+                <input type="file" />
 
                 <br></br>
                 <br></br>
@@ -171,8 +171,8 @@ const NewBlog = () => {
                 <div className={classes.root}>
                   <div className={classes.wrapper}>
                     <Fab
-                      aria-label='save'
-                      color='primary'
+                      aria-label="save"
+                      color="primary"
                       className={buttonClassname}
                       onClick={handleClick}
                     >
@@ -187,8 +187,8 @@ const NewBlog = () => {
                   </div>
                   <div className={classes.wrapper}>
                     <Button
-                      variant='contained'
-                      color='primary'
+                      variant="contained"
+                      color="primary"
                       className={buttonClassname}
                       disabled={isFetching}
                       onClick={handleClick}
@@ -206,17 +206,17 @@ const NewBlog = () => {
               </form>
             </CardContent>
             <CardActions>
-              <Button size='small'>Learn More</Button>
+              <Button size="small">Learn More</Button>
             </CardActions>
           </Card>
         </div>
-        <div className='new-post__wrapper__bottom'>
+        <div className="new-post__wrapper__bottom">
           <Post
             title={newPostData.title}
-            imgUrl=''
+            imgUrl=""
             paragraph={newPostData.paragraph}
             author={newPostData.author}
-            date={''}
+            date={""}
             bgColor={newPostData.bgColor}
           />
         </div>
