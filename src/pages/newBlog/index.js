@@ -15,7 +15,6 @@ import CheckIcon from '@material-ui/icons/Check';
 import SaveIcon from '@material-ui/icons/Save';
 
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
 const useStyles = makeStyles((theme) => ({
@@ -158,13 +157,6 @@ const NewBlog = () => {
                   }}
                 />
 
-                <br></br>
-                <br></br>
-
-                <input type='file' name='image' />
-                <Button variant='contained' color='primary' type='submit'>
-                  Guardar imagen
-                </Button>
                 <br></br>
                 <br></br>
 
