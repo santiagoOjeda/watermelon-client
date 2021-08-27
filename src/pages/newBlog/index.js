@@ -15,7 +15,9 @@ import CheckIcon from '@material-ui/icons/Check';
 import SaveIcon from '@material-ui/icons/Save';
 
 import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import useGetDate from '../../hooks/useGetDate';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,7 +56,6 @@ const NewBlog = () => {
   const [isFetching, setIsFetching] = useState(false);
 
   const classes = useStyles();
-  const [loading, setLoading] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const timer = React.useRef();
 
@@ -62,7 +63,10 @@ const NewBlog = () => {
     [classes.buttonSuccess]: success,
   });
 
-  const handleClick = (value) => {
+  const { date } = useGetDate();
+
+  const handleClick = () => {
+    console.log('date', date);
     setIsFetching(true);
     setSuccess(false);
     axios.defaults.baseURL = 'https://watermelon-server.herokuapp.com';
@@ -74,10 +78,10 @@ const NewBlog = () => {
 
     axios({
       method: 'post',
-      url: '/post/save',
+      url: '/post/new',
       data: newPostData,
     }).then(
-      (response) => {
+      () => {
         setIsFetching(false);
         setSuccess(true);
         setNewPostData({});
@@ -88,19 +92,8 @@ const NewBlog = () => {
     );
   };
 
-  const handleColorChange = (color, event) => {
+  const handleColorChange = (color) => {
     setNewPostData({ ...newPostData, bgColor: color.hex });
-  };
-
-  const handleButtonClick = () => {
-    if (!loading) {
-      setSuccess(false);
-      setLoading(true);
-      timer.current = window.setTimeout(() => {
-        setSuccess(true);
-        setLoading(false);
-      }, 2000);
-    }
   };
 
   useEffect(() => {
@@ -109,21 +102,20 @@ const NewBlog = () => {
     };
   }, []);
 
+  useEffect(() => {
+    debugger;
+    setNewPostData({ ...newPostData, date: date });
+  }, [date]);
+
   return (
     <>
       <div className='new-post__wrapper'>
         <div className='new-post__wrapper__top'>
           <Card>
             <CardContent>
-              <form
-                noValidate
-                className='new-post__form'
-                autoComplete='off'
-                method='POST'
-                enctype='multipart/form-data'
-              >
+              <form noValidate className='new-post__form' autoComplete='off'>
                 <TextField
-                  id='title'
+                  id='standard-basic'
                   label='Titulo'
                   onChange={(value) => {
                     setNewPostData({
@@ -134,7 +126,7 @@ const NewBlog = () => {
                 />
 
                 <TextField
-                  id='paragraph'
+                  id='standard-multiline-flexible'
                   label='Parrafo'
                   multiline
                   rowsMax={4}
@@ -147,7 +139,7 @@ const NewBlog = () => {
                 />
 
                 <TextField
-                  id='author'
+                  id='standard-basic'
                   label='Autor'
                   onChange={(value) => {
                     setNewPostData({
@@ -202,6 +194,9 @@ const NewBlog = () => {
                 </div>
               </form>
             </CardContent>
+            <CardActions>
+              <Button size='small'>Learn More</Button>
+            </CardActions>
           </Card>
         </div>
         <div className='new-post__wrapper__bottom'>
@@ -210,7 +205,7 @@ const NewBlog = () => {
             imgUrl=''
             paragraph={newPostData.paragraph}
             author={newPostData.author}
-            date={''}
+            date={newPostData.date}
             bgColor={newPostData.bgColor}
           />
         </div>

@@ -1,15 +1,23 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const useFetch = (url) => {
   const [postList, setPostList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [percentDownloaded, setPercentDownloaded] = useState(0);
 
   useEffect(() => {
     const fetchPost = async () => {
       setIsLoading(true);
       await axios
-        .get(url)
+        .get(url, {
+          onDownloadProgress: (progressEvent) => {
+            var percentCompleted = Math.round(
+              (progressEvent.loaded * 100) / progressEvent.total
+            );
+            setPercentDownloaded(percentCompleted);
+          },
+        })
         .then((response) => {
           setPostList(response.data);
           setIsLoading(false);
@@ -20,7 +28,8 @@ const useFetch = (url) => {
     };
     fetchPost();
   }, [url]);
-  return { postList, isLoading };
+
+  return { postList, isLoading, percentDownloaded };
 };
 
 export default useFetch;
