@@ -15,7 +15,6 @@ import CheckIcon from '@material-ui/icons/Check';
 import SaveIcon from '@material-ui/icons/Save';
 
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import useGetDate from '../../hooks/useGetDate';
 
@@ -54,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
 const NewBlog = () => {
   const [newPostData, setNewPostData] = useState({});
   const [isFetching, setIsFetching] = useState(false);
+  const [image, setImage] = useState(<h2>kdfkldfl</h2>);
 
   const classes = useStyles();
   const [success, setSuccess] = React.useState(false);
@@ -69,7 +69,8 @@ const NewBlog = () => {
     console.log('date', date);
     setIsFetching(true);
     setSuccess(false);
-    axios.defaults.baseURL = 'https://watermelon-server.herokuapp.com';
+    // axios.defaults.baseURL = 'https://watermelon-server.herokuapp.com';
+    axios.defaults.baseURL = 'http://localhost:5050';
     axios.defaults.headers.post['Content-Type'] =
       'application/json;charset=utf-8';
     axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
@@ -96,6 +97,23 @@ const NewBlog = () => {
     setNewPostData({ ...newPostData, bgColor: color.hex });
   };
 
+  const handleImageChange = (e) => {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(e.target.files[0]);
+
+    reader.onload = function () {
+      setNewPostData({
+        ...newPostData,
+        img: reader.result,
+      });
+      setImage(reader.result);
+      console.log('onload ', newPostData);
+    };
+
+    console.log(newPostData);
+  };
+
   useEffect(() => {
     return () => {
       clearTimeout(timer.current);
@@ -103,7 +121,6 @@ const NewBlog = () => {
   }, []);
 
   useEffect(() => {
-    debugger;
     setNewPostData({ ...newPostData, date: date });
   }, [date]);
 
@@ -150,7 +167,14 @@ const NewBlog = () => {
                 />
 
                 <br></br>
+                <input
+                  type='file'
+                  id='imageInp'
+                  accept='image/png, image/jpeg'
+                  onChange={(e) => handleImageChange(e)}
+                />
                 <br></br>
+                <img src={image} alt='hihi' />
 
                 <CirclePicker
                   onChange={handleColorChange}
@@ -194,15 +218,12 @@ const NewBlog = () => {
                 </div>
               </form>
             </CardContent>
-            <CardActions>
-              <Button size='small'>Learn More</Button>
-            </CardActions>
           </Card>
         </div>
         <div className='new-post__wrapper__bottom'>
           <Post
             title={newPostData.title}
-            imgUrl=''
+            imgUrl={image}
             paragraph={newPostData.paragraph}
             author={newPostData.author}
             date={newPostData.date}
