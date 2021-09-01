@@ -12,23 +12,14 @@ const Blog = () => {
   useEffect(() => {}, []);
 
   const renderImage = (bufferImg) => {
-    console.log(atob(bufferImg));
     return atob(bufferImg);
-
-    /*       debugger;
-    const reader = new FileReader(bufferImg);
-    let image;
-    reader.readAsDataURL(bufferImg);
-    reader.onload = function () {
-      return reader.result;
-    };  */
   };
 
   return (
     <>
       {isLoading ? (
         <div className='blog__loading-wrapper'>
-          <CircularProgress variant='determinate' value={percentDownloaded} />
+          <CircularProgress />
         </div>
       ) : (
         postList.map((post) => (

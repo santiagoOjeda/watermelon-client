@@ -18,6 +18,16 @@ function Post({ bgColor, title, paragraph, author, date, imgUrl }) {
         <p>{paragraph}</p>
       </div>
       <img src={imgUrl} alt='ACA VA EL BG' />
+      <div
+        className='wrapper__bg'
+        style={{
+          backgroundColor: bgColor,
+          width: '100%',
+          height: '100%',
+          top: '0',
+          position: 'absolute',
+        }}
+      ></div>
     </article>
   );
 }

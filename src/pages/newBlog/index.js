@@ -69,8 +69,7 @@ const NewBlog = () => {
     console.log('date', date);
     setIsFetching(true);
     setSuccess(false);
-    // axios.defaults.baseURL = 'https://watermelon-server.herokuapp.com';
-    axios.defaults.baseURL = 'http://localhost:5050';
+    axios.defaults.baseURL = 'https://watermelon-server.herokuapp.com';
     axios.defaults.headers.post['Content-Type'] =
       'application/json;charset=utf-8';
     axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
