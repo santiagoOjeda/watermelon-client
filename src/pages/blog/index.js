@@ -1,13 +1,12 @@
-import React, { useDebugValue, useEffect, useState } from 'react';
-import Post from '../../components/post';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import './styles.scss';
-import useFetch from '../../hooks/useFetch';
+import React, { useDebugValue, useEffect, useState } from "react";
+import Post from "../../components/post";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import "./styles.scss";
+import useFetch from "../../hooks/useFetch";
 
 const Blog = () => {
-  const URL = 'https://watermelon-server.herokuapp.com/post/all';
+  const URL = "https://watermelon-server.herokuapp.com/post/all";
   const { postList, isLoading, percentDownloaded } = useFetch(URL);
-  const [imageFile, setImageFile] = useState();
 
   useEffect(() => {}, []);
 
@@ -18,7 +17,7 @@ const Blog = () => {
   return (
     <>
       {isLoading ? (
-        <div className='blog__loading-wrapper'>
+        <div className="blog__loading-wrapper">
           <CircularProgress />
         </div>
       ) : (

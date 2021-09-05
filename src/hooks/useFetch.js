@@ -11,6 +11,9 @@ const useFetch = (url) => {
       setIsLoading(true);
       await axios
         .get(url, {
+          function(req, res) {
+            res.header("Access-Control-Allow-Origin", "*");
+          },
           onDownloadProgress: (progressEvent) => {
             var percentCompleted = Math.round(
               (progressEvent.loaded * 100) / progressEvent.total
